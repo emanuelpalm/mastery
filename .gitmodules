@@ -1,3 +1,6 @@
 [submodule "client"]
 	path = client
 	url = git@github.com:emanuelpalm/mastery-client
+[submodule "account"]
+	path = account
+	url = https://github.com/haidar-chikh/mastery-account.git
