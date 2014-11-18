@@ -1,4 +1,4 @@
-# Mastery
+![Mastery Logo](https://github.com/emanuelpalm/mastery/blob/master/docs/pics/mastery-logo.png)
 
 This repository links to all repositories related to the Mastery project. It may also eventually contain scripts for deploying the application.
 
