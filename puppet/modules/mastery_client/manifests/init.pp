@@ -1,0 +1,3 @@
+class mastery_client {
+
+}
