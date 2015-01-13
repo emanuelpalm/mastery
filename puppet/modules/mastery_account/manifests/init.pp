@@ -21,16 +21,9 @@ class mastery_account($baseDir) {
     mode  => 0644,
   }
 
-  file { '/var/mastery/':
+  file { '/usr/share/nginx/html/avatars/':
     ensure => 'directory',
-
-    owner => 'www-data',
-    group => 'www-data',
-    mode  => 0644,
-  }
-  file { '/var/mastery/avatars/':
-    ensure => 'directory',
-    require => File['/var/mastery/'],
+    require => Class['Nginx'],
 
     owner => 'www-data',
     group => 'www-data',
