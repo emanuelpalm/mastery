@@ -28,6 +28,9 @@ class { 'mastery_client':
 class { 'mastery_account':
   baseDir => '/usr/local/share/mastery/account/',
 }
+class { 'mastery_server':
+  baseDir => '/usr/local/share/mastery/server/',
+}
 
 file { '/usr/local/share/mastery/':
   ensure => 'directory',
