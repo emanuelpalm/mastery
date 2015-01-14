@@ -1,4 +1,7 @@
 class nodejs {
-  package { 'nodejs': ensure => 'installed', require => Exec['apt-update'] }
+  package { 'nodejs':
+    ensure => 'installed',
+    require => Exec['apt-update'],
+  }
 }
 
