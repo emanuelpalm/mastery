@@ -1,4 +1,4 @@
-class mastery_account($baseDir) {
+class mastery_account($baseDir, $rootPassword) {
   file { $baseDir:
     ensure => 'directory',
     notify  => Service['mastery_account'],
@@ -30,9 +30,8 @@ class mastery_account($baseDir) {
     mode  => 0644,
   }
 
-  $root_password = file('/root/.mysql-passwd.cnf')
   exec { 'mysql-setup':
-    command => "/usr/bin/mysql -u root -p$root_password < $baseDir/setup.sql",
+    command => "/usr/bin/mysql -u root -p$rootPassword < $baseDir/setup.sql",
     require => Class['Mysql'],
   }
 

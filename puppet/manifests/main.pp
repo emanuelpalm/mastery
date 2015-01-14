@@ -18,11 +18,13 @@ user {
   'www-data': ensure => 'present',
 }
 
+$mysqlPassword = sha1(fqdn_rand(4294967295))
+
 include motd
 include nginx
 include nodejs
 class { 'mysql':
-  root_password => sha1(fqdn_rand(4294967295)),
+  rootPassword => $mysqlPassword,
 }
 
 class { 'mastery_client':
@@ -31,9 +33,10 @@ class { 'mastery_client':
   stage   => 'last',
 }
 class { 'mastery_account':
-  baseDir => '/usr/local/share/mastery/account/',
-  require => [ Class['nodejs'], Class['mysql'] ],
-  stage   => 'last',
+  baseDir      => '/usr/local/share/mastery/account/',
+  rootPassword => $mysqlPassword,
+  require      => [ Class['nodejs'], Class['mysql'] ],
+  stage        => 'last',
 }
 class { 'mastery_server':
   baseDir => '/usr/local/share/mastery/server/',
