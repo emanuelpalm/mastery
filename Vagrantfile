@@ -15,9 +15,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
+  # 1. $ vagrant plugin install vagrant-google
+  # 2. $ vagrant up --provider=google
+  config.vm.provider :google do |google, override|
+    google.google_project_id = "YOUR_GOOGLE_CLOUD_PROJECT_ID"
+    google.google_client_email = "YOUR_SERVICE_ACCOUNT_EMAIL_ADDRESS"
+    google.google_key_location = "/PATH/TO/YOUR/PRIVATE_KEY.p12"
+
+    override.ssh.username = "USERNAME"
+    override.ssh.private_key_path = "~/.ssh/id_rsa" # "~/.ssh/google_compute_engine"
+  end
+
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file  = "main.pp"
     puppet.module_path    = "puppet/modules"
   end
 end
+
