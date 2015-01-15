@@ -30,6 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     google.machine_type = "f1-micro"
     google.zone = "europe-west1-c"
     google.network = "default"
+    google.tags = ["http-server"]
 
     override.ssh.username = "USERNAME"
     override.ssh.private_key_path = "~/.ssh/id_rsa" # "~/.ssh/google_compute_engine"
